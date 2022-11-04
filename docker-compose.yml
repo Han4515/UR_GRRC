@@ -9,7 +9,7 @@ networks:
 # services (container)
 services:
   ros-master:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ros-master
     networks: 
       macvlan-network: 
@@ -24,7 +24,7 @@ services:
   #ur10_cartesian_bringup
   #ur10_cartesian_passthrough_bringup
   ur-ros-driver:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ur-ros-driver
     depends_on:
       - ros-master
@@ -46,7 +46,7 @@ services:
     restart: always
   
   ur-ros-control:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ur-ros-control
     depends_on:
       - ros-master
@@ -68,7 +68,7 @@ services:
 
   #UR10 B
   ros-master2:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ros-master2
     networks: 
       macvlan-network: 
@@ -80,7 +80,7 @@ services:
     restart: always
 
   ur-ros-driver2:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ur-ros-driver2
     depends_on:
       - ros-master2
@@ -96,13 +96,13 @@ services:
     command: >      
       bash -c " cd ~/catkin_ws2 &&
       source ~/catkin_ws2/devel/setup.bash &&
-      roslaunch ur_robot_driver ur10_cartesian_passthrough_bringup.launch robot_ip:=192.168.0.147"
+      roslaunch ur_robot_driver ur10_cartesian_passthrough_bringup.launch robot_ip:=192.168.0.148"
     cpus: 1.0
     privileged: true
     restart: always
 
   ur-ros-control2:
-    image: grrc:latest
+    image: urgrrc:latest
     container_name: ur-ros-control2
     depends_on:
       - ros-master2
